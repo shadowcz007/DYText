@@ -1,9 +1,10 @@
-
-    /*
+/*
 
 欢迎访问微信公众号 Design-AI-Lab 
 
 */
+   
+   
     Array.prototype.sum = function (){
         return this.reduce(function (partial, value){
         return partial + value;
@@ -19,7 +20,7 @@
         
  
         this.fontSize=_opts.fontSize+'px' || '120px';
-        this.height=_opts.fontSize||120;
+        this.height=(_opts.fontSize||120)*1.5;
         this.fontFamily=_opts.fontFamily||'zcool-gdh';
         this.font="italic small-caps 900 "+this.fontSize+" "+this.fontFamily;
         this.offset=(this.height*_opts.offset)||this.height*0.015;
@@ -53,7 +54,7 @@
 
     DYText.prototype.setFontSize=function(_num){
         this.fontSize=_num+'px' || '120px';
-        this.height=_num ||120;
+        this.height=(_num ||120)*1.5;
         this.font="italic small-caps 900 "+this.fontSize+" "+this.fontFamily;
         this.offset=this.height*0.015;
     };
