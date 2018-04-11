@@ -1,5 +1,9 @@
 
-    
+    /*
+
+欢迎访问微信公众号 Design-AI-Lab 
+
+*/
     Array.prototype.sum = function (){
         return this.reduce(function (partial, value){
         return partial + value;
