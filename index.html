@@ -1,198 +1,207 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="apple-moblie-web-app-capable" content="yes">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>DYText Tool</title>
     <link rel="stylesheet" href="./css/main.css">
-    
+
     <script src="https://cdn.bootcss.com/gif.js/0.2.0/gif.js"></script>
     <script src="./js/dytext.js"></script>
 </head>
+
 <body>
     <header>
-        <h2>抖音风格的文字生成器</h2>
-        <p style="12px;">提示：由于是国外的服务器，GIF功能有可能因为网速原因失灵，请刷新重试；建议先下载站酷高端黑字体安装到电脑再使用</p>
-         <p style="12px;">建议使用chrome浏览器，PC端访问；如有其他建议，欢迎微信扫码关注二维码，联系我。</p>
+        <h2>抖音风格的文字生成器v1.2</h2>
+        <details class="menu" close>
+            <summary class="title">提示</summary>
+            <p>由于是国外的服务器，GIF功能有可能因为网速原因失灵，请刷新重试；建议先下载站酷高端黑字体安装到电脑再使用</p>
+            <p>建议使用chrome浏览器，PC端访问；如有其他建议，欢迎微信扫码关注二维码，联系我。</p>
+        </details>
+
     </header>
     <div id="main">
         <div id="preview"></div>
         <div id="edit">
 
-            <div class="option">
-                <div class="title">输入内容</div>
+            <div class="option" style="width:100%;">
+                <div class="title">更改内容</div>
                 <input type="text" maxlength="24" class="shadow" value="HELLO WORLD" id="word">
             </div>
 
-            
-            <div class="option">
-                    <div class="title">字体大小</div>
-                    <input type="range" step="1" min="10" onchange="changeFontSize()" id="fontSize">
+
+
+            <div class="option" style="display: none">
+                <div class="title">字体大小</div>
+                <input type="range" step="1" min="10" onchange="changeFontSize()" id="fontSize" value="44">
             </div>
 
-            <div class="option">
-                    <div class="title">抖动幅度</div>
-                    <input type="range" step="2" min="1" onchange="changeSeed()" id="seed">
+            <div class="option" style="display: none">
+                <div class="title">抖动幅度</div>
+                <input type="range" step="2" min="1" onchange="changeSeed()" id="seed" value="1.8">
             </div>
 
-            <div class="option">
-                    <div class="title">切割线</div>
+            <div class="option" style="display: none">
+                <div class="title">切割线</div>
+
+                <div class="rowDisplay">
+
+                    <input id="isdev" type="checkbox" onchange="changeDev()">
+                    <label for="isdev" id="isdev_label">显示</lable>
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div class="option" style="display: none">
+                <div class="title">图片格式</div>
+
+                <div class="radioGroup">
+                    <div class="rowDisplay">
+                        <input id="type_png" type="radio" name="type" onchange="changeType()" checked>
+                        <label for="type_png">PNG</lable>
+                    </div>
 
                     <div class="rowDisplay">
-
-                            <input id="isdev" type="checkbox"  onchange="changeDev()" ><label for="isdev" id="isdev_label">显示</lable> 
-                    
-                    </div>
-                            
-                     
-
-                    
-                      
-            </div>
-
-
-            <div class="option">
-                    <div class="title">图片格式</div>
-
-                    <div class="radioGroup">
-                            <div class="rowDisplay">
-                                    <input id="type_png" type="radio" name="type" onchange="changeType()" checked><label for="type_png">PNG</lable> 
-                            </div>
-        
-                            <div class="rowDisplay">
-                                    <input id="type_gif" type="radio" name="type" onchange="changeType()"><label for="type_gif">GIF</lable> 
-        
-                            </div>
+                        <input id="type_gif" type="radio" name="type" onchange="changeType()">
+                        <label for="type_gif">GIF</lable>
 
                     </div>
 
-                    
-                      
+                </div>
+
+
+
             </div>
-            
-            
+
+
         </div>
     </div>
     <footer>
-        <img src="./img/qrcode.jpg" class="logo">
+        <img src="./img/logo_text_long.png" class="logo">
         <p>MIT License by shadow</p>
-        
+
     </footer>
     <script>
-
-    var dytext;
-    var type_png=true;
-    var previewElement=document.querySelector('#preview');
-    var wordElement=document.querySelector('#word');
-    var fontSizeElement=document.querySelector('#fontSize');
-    var seedElement=document.querySelector('#seed');
-    var typeGifElement=document.querySelector('#type_gif');
-    var typePngElement=document.querySelector('#type_png');
-    var idDevElement=document.querySelector('#isdev');
-
-
-    init();
+        var dytext;
+        var type_png = false;
+        var previewElement = document.querySelector('#preview');
+        var wordElement = document.querySelector('#word');
+        var fontSizeElement = document.querySelector('#fontSize');
+        var seedElement = document.querySelector('#seed');
+        var typeGifElement = document.querySelector('#type_gif');
+        var typePngElement = document.querySelector('#type_png');
+        var idDevElement = document.querySelector('#isdev');
 
 
-
-    wordElement.addEventListener('change',function(e){
-        var _w=this.value;
-        dytext.word=_w;
-        updatePreview();
-
-    });
+        init();
 
 
-    function init(){
-        var _w=wordElement.value,
-            _fs=fontSizeElement.value,
-            _s=seedElement.value*0.03,
-            _dev=idDevElement.checked;
-        
-  
 
+        wordElement.addEventListener('change', function (e) {
+            var _w = this.value;
+            dytext.word = _w;
+            updatePreview();
 
-        dytext=new DYText({
-            word:_w,
-            color:'white',
-            colorBg:'#1F0D1C',
-            colorLeft:'#00F5EB',
-            colorRight:'#FF0050',
-            dev:_dev,
-            seed:_s,
-            fontSize:_fs
         });
-        
-        updatePreview();
-    };
+
+
+        function init() {
+            var _w = wordElement.value,
+                _fs = fontSizeElement.value,
+                _s = seedElement.value * 0.03,
+                _dev = idDevElement.checked;
 
 
 
-    function createImg(){
-        var canvasTarget=document.createElement('canvas'),
-        ctxTarget=canvasTarget.getContext('2d');
-        canvasTarget.width=window.innerWidth;
-        dytext.start();
-        dytext.toCanvas(ctxTarget);
-        previewElement.innerHTML='';
-        previewElement.appendChild(canvasTarget);
-    };
 
-    function createGif(){
-        dytext.createGif(function(gif){
-
-        var img=document.createElement('img');
-            img.src=gif;
-            previewElement.innerHTML='';
-            previewElement.appendChild(img);
-        })
-    };
-
- 
-    function changeSeed(){
-        var _s=seedElement.value;
-        var _seed=0.03*_s;
-        console.log(_seed);
-        dytext.seed=_seed;
-        updatePreview();
-    };
-
-    function changeFontSize(){
-        var _fs=fontSizeElement.value;
-        var _fontSize=Math.round(0.01*_fs*200);
-        dytext.setFontSize(_fontSize);
-        updatePreview();
-        console.log(_fontSize);
-
-    };
-
-    function changeType(){
-        var png=typePngElement.checked;
-      
-            type_png=png;
+            dytext = new DYText({
+                word: _w,
+                color: 'white',
+                colorBg: '#1F0D1C',
+                colorLeft: '#00F5EB',
+                colorRight: '#FF0050',
+                dev: _dev,
+                seed: _s,
+                fontSize: _fs
+            });
 
             updatePreview();
-       // console.log(png)
-    };
-
-    function changeDev(){
-        var _d=idDevElement.checked;
-        console.log(_d)
-        dytext.dev=_d;
-         
-        updatePreview();
-    };
-
-    function updatePreview(){
-        if (type_png) {
-            createImg();
-        }else{
-            createGif();
         };
-    };
 
-        
+
+
+        function createImg() {
+            var canvasTarget = document.createElement('canvas'),
+                ctxTarget = canvasTarget.getContext('2d');
+            canvasTarget.width = window.innerWidth;
+            dytext.start();
+            dytext.toCanvas(ctxTarget);
+            previewElement.innerHTML = '';
+            previewElement.appendChild(canvasTarget);
+        };
+
+        function createGif() {
+            dytext.createGif(function (gif) {
+
+                var img = document.createElement('img');
+                img.src = gif;
+                previewElement.innerHTML = '';
+                previewElement.appendChild(img);
+            })
+        };
+
+
+        function changeSeed() {
+            var _s = seedElement.value;
+            var _seed = 0.03 * _s;
+            console.log(_seed);
+            dytext.seed = _seed;
+            updatePreview();
+        };
+
+        function changeFontSize() {
+            var _fs = fontSizeElement.value;
+            var _fontSize = Math.round(0.01 * _fs * 200);
+            dytext.setFontSize(_fontSize);
+            updatePreview();
+            console.log(_fontSize);
+
+        };
+
+        function changeType() {
+            var png = typePngElement.checked;
+
+            type_png = png;
+
+            updatePreview();
+            // console.log(png)
+        };
+
+        function changeDev() {
+            var _d = idDevElement.checked;
+            console.log(_d)
+            dytext.dev = _d;
+
+            updatePreview();
+        };
+
+        function updatePreview() {
+            if (type_png) {
+                createImg();
+            } else {
+                createGif();
+            };
+        };
     </script>
 </body>
+
 </html>

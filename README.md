@@ -5,4 +5,8 @@ glitch art font generator
 
 ![效果预览](./img/dytext_preview.gif)
 
+
+2018/07/11 适配移动端
+
+
 微信公众号 Design-AI-Lab
