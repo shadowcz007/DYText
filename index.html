@@ -123,6 +123,24 @@
             wordElement.value=_ws[_i];
 
 
+            var _cs=[{
+                color: '#FFEB1C',
+                colorBg: '#180D3F',
+                colorLeft: '#FFEB1C',
+                colorRight: '#4EC1FF',
+            },{
+                color: '#1CFFFC',
+                colorBg: '#0D2C3F',
+                colorLeft: '#1CFFFC',
+                colorRight: '#FA4747',
+            },{
+                color: 'white',
+                colorBg: '#0D2C3F',
+                colorLeft: 'white',
+                colorRight: '#FA4747',
+            }];
+            var _j= ~~(Math.random() * _cs.length);
+
             var _w = wordElement.value,
                 _fs = fontSizeElement.value,
                 _s = seedElement.value * 0.03,
@@ -131,14 +149,15 @@
 
             dytext = new DYText({
                 word: _w,
-                color: 'white',
-                colorBg: '#1F0D1C',
-                colorLeft: '#00F5EB',
-                colorRight: '#FF0050',
+                color: _cs[_j].color,
+                colorBg: _cs[_j].colorBg,
+                colorLeft: _cs[_j].colorLeft,
+                colorRight: _cs[_j].colorRight,
                 dev: _dev,
                 seed: _s,
                 fontSize: _fs,
-                divideNum:20
+                divideNum:20,
+                offset:0.05
             });
 
             updatePreview();
