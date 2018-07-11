@@ -207,8 +207,8 @@ DYText.prototype.drawBg = function () {
     canvasBg.height = this.ctx.canvas.height;
 
 
-    //ctxBg.fillStyle = this.colorBg;
-    // ctxBg.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    ctxBg.fillStyle = this.colorBg;
+   // ctxBg.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height*0.8);
     
 
 
