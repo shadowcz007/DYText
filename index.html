@@ -115,6 +115,12 @@
 
 
         function init() {
+
+            var _ws=["家，是我们一辈子的馋。","所有的精打细算，都是在为爱打算。","人生不过七万六千多顿饭","团圆的每一刻，你都可以留住","让我脸红的，究竟是你，还是酒呢？","我们家不爱花钱，除了为爱花钱。","世界上最远的距离是我看着你，而你看着路。","思念把我变回了小孩","明天有明天的烦恼，今天有今天的刚好。","不冒泡，没机会。","从小的好奇，到大的世界。","记录美好生活","每个人都是一本奇书"];
+            var _i= ~~(Math.random() * _ws.length);
+            wordElement.value=_ws[_i];
+
+
             var _w = wordElement.value,
                 _fs = fontSizeElement.value,
                 _s = seedElement.value * 0.03,
