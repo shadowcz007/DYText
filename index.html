@@ -101,8 +101,10 @@
         var typePngElement = document.querySelector('#type_png');
         var idDevElement = document.querySelector('#isdev');
 
-
-        init();
+        setTimeout(function(){
+            init();
+        },1000);
+       
 
 
 
@@ -127,8 +129,6 @@
                 _dev = idDevElement.checked;
 
 
-
-
             dytext = new DYText({
                 word: _w,
                 color: 'white',
@@ -137,7 +137,8 @@
                 colorRight: '#FF0050',
                 dev: _dev,
                 seed: _s,
-                fontSize: _fs
+                fontSize: _fs,
+                divideNum:20
             });
 
             updatePreview();

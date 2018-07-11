@@ -99,9 +99,6 @@ DYText.prototype.generate = function () {
 
     //console.log(height,'!!')
 
-
-
-
     var i = this.divideNum;
 
     var height_seeds = this.sin(i);
@@ -208,8 +205,8 @@ DYText.prototype.drawBg = function () {
     canvasBg.height = this.ctx.canvas.height;
 
 
-    ctxBg.fillStyle = this.colorBg;
-     ctxBg.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    //ctxBg.fillStyle = this.colorBg;
+    // ctxBg.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
     var word = this.word,
         offset = this.offset,
@@ -298,8 +295,27 @@ DYText.prototype.toCanvas = function (targetCtx) {
 
     targetCtx.fillStyle = Math.random()>=0.5?this.colorBg:'black';
     targetCtx.fillRect(0, 0, 480, 280);
+    targetCtx.fillStyle ='rgba(255,255,255,.1)';
 
-    var w=440,h=w*th/tw,l=240 - w / 2,t=140 - h / 2;
+    var _i=Math.random()>0.5?-1:1;
+    var circle = {
+        x : 22+(Math.random()*260*_i),     
+        y : 125+(Math.random()*60*_i),    
+        r : (Math.random()*260)      
+    };
+    
+    targetCtx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2, true); 
+    var circle2 = {
+        x : 225+(Math.random()*60*_i),       
+        y : 240+(Math.random()*260*_i),    
+        r : (Math.random()*360)    
+    };
+    
+    targetCtx.arc(circle2.x, circle2.y, circle2.r, 0, Math.PI * 2, true);
+    targetCtx.fill();
+    
+
+    var w=480,h=w*th/tw,l=240 - w / 2,t=140 - h / 2;
 
     targetCtx.drawImage(ctx.canvas, l, t, w,h);
 };
