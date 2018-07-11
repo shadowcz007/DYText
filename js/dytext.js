@@ -50,6 +50,8 @@ function DYText(opts) {
     var ctx = canvas.getContext('2d');
     this.ctx = ctx;
 
+    this.bgImg = _opts.bgImg || null;
+
 };
 
 DYText.prototype.setFontSize = function (_num) {
@@ -207,6 +209,8 @@ DYText.prototype.drawBg = function () {
 
     //ctxBg.fillStyle = this.colorBg;
     // ctxBg.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    
+
 
     var word = this.word,
         offset = this.offset,
@@ -293,31 +297,35 @@ DYText.prototype.toCanvas = function (targetCtx) {
     var tw = ctx.canvas.width,
         th = ctx.canvas.height;
 
-    targetCtx.fillStyle = Math.random()>=0.5?this.colorBg:'black';
+    targetCtx.fillStyle ='rgba(0,0,0,0.5)';
+    this.bgImg ? targetCtx.drawImage(this.bgImg, 0, 0) : targetCtx.fillStyle =this.colorBg;
     targetCtx.fillRect(0, 0, 480, 280);
-    targetCtx.fillStyle ='rgba(255,255,255,.1)';
+    targetCtx.fillStyle = 'rgba(255,255,255,.1)';
 
-    var _i=Math.random()>0.5?-1:1;
+    var _i = Math.random() > 0.5 ? -1 : 1;
     var circle = {
-        x : 22+(Math.random()*260*_i),     
-        y : 125+(Math.random()*60*_i),    
-        r : (Math.random()*260)      
+        x: 22 + (Math.random() * 260 * _i),
+        y: 125 + (Math.random() * 60 * _i),
+        r: (Math.random() * 260)
     };
-    
-    targetCtx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2, true); 
+
+    targetCtx.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2, true);
     var circle2 = {
-        x : 225+(Math.random()*60*_i),       
-        y : 240+(Math.random()*260*_i),    
-        r : (Math.random()*360)    
+        x: 225 + (Math.random() * 60 * _i),
+        y: 240 + (Math.random() * 260 * _i),
+        r: (Math.random() * 360)
     };
-    
+
     targetCtx.arc(circle2.x, circle2.y, circle2.r, 0, Math.PI * 2, true);
     targetCtx.fill();
-    
 
-    var w=480,h=w*th/tw,l=240 - w / 2,t=140 - h / 2;
 
-    targetCtx.drawImage(ctx.canvas, l, t, w,h);
+    var w = 480,
+        h = w * th / tw,
+        l = 240 - w / 2,
+        t = 140 - h / 2;
+
+    targetCtx.drawImage(ctx.canvas, l, t, w, h);
 };
 
 

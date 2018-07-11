@@ -101,10 +101,23 @@
         var typePngElement = document.querySelector('#type_png');
         var idDevElement = document.querySelector('#isdev');
 
-        setTimeout(function(){
-            init();
-        },1000);
-       
+
+        setTimeout(function () {
+           
+            if (Math.random() > 0.5) {
+                var _img = document.createElement('img');
+                _img.setAttribute('crossOrigin', 'anonymous');
+                _img.onload = function () {
+                    init(_img);
+                };
+                _img.setAttribute('src', 'https://unsplash.it/480/280/?random');
+            } else {
+                init();
+            }
+
+
+        }, 200);
+
 
 
 
@@ -116,30 +129,33 @@
         });
 
 
-        function init() {
+        function init(_bgImg) {
 
-            var _ws=["家，是我们一辈子的馋。","所有的精打细算，都是在为爱打算。","人生不过七万六千多顿饭","团圆的每一刻，你都可以留住","让我脸红的，究竟是你，还是酒呢？","我们家不爱花钱，除了为爱花钱。","世界上最远的距离是我看着你，而你看着路。","思念把我变回了小孩","明天有明天的烦恼，今天有今天的刚好。","不冒泡，没机会。","从小的好奇，到大的世界。","记录美好生活","每个人都是一本奇书"];
-            var _i= ~~(Math.random() * _ws.length);
-            wordElement.value=_ws[_i];
+            var _ws = ["家，是我们一辈子的馋。", "所有的精打细算，都是在为爱打算。", "人生不过七万六千多顿饭", "团圆的每一刻，你都可以留住", "让我脸红的，究竟是你，还是酒呢？",
+                "我们家不爱花钱，除了为爱花钱。", "世界上最远的距离是我看着你，而你看着路。", "思念把我变回了小孩", "明天有明天的烦恼，今天有今天的刚好。", "不冒泡，没机会。",
+                "从小的好奇，到大的世界。", "记录美好生活", "每个人都是一本奇书"
+            ];
+            var _i = ~~(Math.random() * _ws.length);
+            wordElement.value = _ws[_i];
 
 
-            var _cs=[{
+            var _cs = [{
                 color: '#FFEB1C',
                 colorBg: '#180D3F',
                 colorLeft: '#FFEB1C',
                 colorRight: '#4EC1FF',
-            },{
+            }, {
                 color: '#1CFFFC',
                 colorBg: '#0D2C3F',
                 colorLeft: '#1CFFFC',
                 colorRight: '#FA4747',
-            },{
+            }, {
                 color: 'white',
                 colorBg: '#0D2C3F',
                 colorLeft: 'white',
                 colorRight: '#FA4747',
             }];
-            var _j= ~~(Math.random() * _cs.length);
+            var _j = ~~(Math.random() * _cs.length);
 
             var _w = wordElement.value,
                 _fs = fontSizeElement.value,
@@ -156,8 +172,9 @@
                 dev: _dev,
                 seed: _s,
                 fontSize: _fs,
-                divideNum:20,
-                offset:0.05
+                divideNum: 20,
+                offset: 0.05,
+                bgImg: _bgImg
             });
 
             updatePreview();
