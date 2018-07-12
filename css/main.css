@@ -4,23 +4,13 @@ font-family: zcool-gdh;
 src: url('./zcool-gdh.ttf'); 
 } 
  */
-/*
- @font-face {
-    font-family: 'zcool-gdh';
-    src: url('//at.alicdn.com/t/webfont_vycr3e6aggc.eot');
-    /* IE9*/
-    src: url('//at.alicdn.com/t/webfont_vycr3e6aggc.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('//at.alicdn.com/t/webfont_vycr3e6aggc.woff') format('woff'), /* chrome、firefox */
-    url('//at.alicdn.com/t/webfont_vycr3e6aggc.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-    url('//at.alicdn.com/t/webfont_vycr3e6aggc.svg#思源黑体-极细') format('svg');
-    /* iOS 4.1- */
-}
-*/
+
 
 html, body {
     padding: 0;
     margin: 0;
     width:100%;    
+    font-family: '-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif'
 }
 
 p{
@@ -55,6 +45,16 @@ details summary::-webkit-details-marker {
       display: flex;
       flex-direction: row;
       background-color: #eee
+  }
+
+  .mainBtn{
+    height: 56px;
+    width: 80%;
+    background: black;
+    color: white;
+    border: none;
+    margin-top: 32px;
+    outline: none;
   }
 header{
     padding: 0;

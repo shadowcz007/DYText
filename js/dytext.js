@@ -21,7 +21,7 @@ function DYText(opts) {
 
     this.fontSize = _opts.fontSize + 'px' || '120px';
     this.height = (_opts.fontSize || 120) * 1.5;
-    this.fontFamily = _opts.fontFamily || 'zcool-gdh';
+    this.fontFamily = _opts.fontFamily || '-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif';
     this.font = "italic small-caps 900 " + this.fontSize + " " + this.fontFamily;
     this.offset = (this.height * _opts.offset) || this.height * 0.06;
 

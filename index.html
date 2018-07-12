@@ -34,11 +34,8 @@
                             <input type="text" maxlength="24" class="shadow" value="HELLO WORLD" id="word">
                         </div>
             
-            
-            
-                  
-            
-            
+                        <button class="mainBtn" onclick="changeText()">换一换</button>
+        
                     </div>
                 </div>
             
@@ -63,12 +60,7 @@
                 
                                 </div>
                 
-                
-                
-                
-                
                             </div>
-                
                 
                             <div class="option"  >
                                 <div class="title">图片格式</div>
@@ -86,9 +78,7 @@
                                     </div>
                 
                                 </div>
-                
-                
-                
+                               
                             </div>
                 </div>
 
@@ -134,9 +124,22 @@
             var _w = this.value;
             dytext.word = _w;
             updatePreview();
-
         });
 
+        
+        function changeText(){
+            var _ws = ["家，是我们一辈子的馋。", "所有的精打细算，都是在为爱打算。", "人生不过七万六千多顿饭", "团圆的每一刻，你都可以留住", "让我脸红的，究竟是你，还是酒呢？",
+                "我们家不爱花钱，除了为爱花钱。", "世界上最远的距离是我看着你，而你看着路。", "思念把我变回了小孩", "明天有明天的烦恼，今天有今天的刚好。", "不冒泡，没机会。",
+                "从小的好奇，到大的世界。", "记录美好生活", "每个人都是一本奇书"
+            ];
+            var _i = ~~(Math.random() * _ws.length);
+            wordElement.value = _ws[_i];
+            dytext.word =_ws[_i];
+            updatePreview();
+        };
+
+
+        
 
         function init(_bgImg) {
 
@@ -182,8 +185,7 @@
                 seed: _s,
                 fontSize: _fs,
                 divideNum: 24,
-                bgImg: _bgImg,
-                fontFamily:'-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif'
+                bgImg: _bgImg
             });
 
             updatePreview();
