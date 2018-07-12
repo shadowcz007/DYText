@@ -50,11 +50,15 @@ details summary::-webkit-details-marker {
   .mainBtn{
     height: 56px;
     width: 80%;
+    margin-top: 32px;
+  }
+
+  .btn{
     background: black;
     color: white;
     border: none;
-    margin-top: 32px;
     outline: none;
+    height: 56px;
   }
 header{
     padding: 0;

@@ -33,8 +33,13 @@
                             <div class="title">更改内容</div>
                             <input type="text" maxlength="24" class="shadow" value="HELLO WORLD" id="word">
                         </div>
-            
-                        <button class="mainBtn" onclick="changeText()">换一换</button>
+                        
+                         <div class="mainBtn">
+                                <button class="btn" onclick="changeText()">换文案</button>
+                                <button class="btn" onclick="changeColors()">换颜色</button>
+                                <button class="btn" onclick="changeBackground()">换背景</button>
+                         </div>
+                        
         
                     </div>
                 </div>
@@ -100,6 +105,7 @@
         var typePngElement = document.querySelector('#type_png');
         var idDevElement = document.querySelector('#isdev');
 
+        var bgImg,colors,isBgImg=false,whichColor=0;
 
         setTimeout(function () {
            
@@ -107,16 +113,43 @@
                 var _img = document.createElement('img');
                 _img.setAttribute('crossOrigin', 'anonymous');
                 _img.onload = function () {
+                    bgImg=_img;
                     init(_img);
+                    isBgImg=true;
                 };
                 _img.setAttribute('src', 'https://unsplash.it/480/280/?random');
             } else {
                 init();
+                isBgImg=false;
             }
 
 
         }, 200);
 
+       
+       function changeBackground(){
+            if (isBgImg==false) {
+               
+                    dytext.bgImg=bgImg;
+                    updatePreview();
+                    isBgImg=true;
+                
+            } else {
+                dytext.bgImg='';
+                var ks=Object.keys(colors);
+                whichColor+=1;
+
+                if (whichColor>=ks.length) {
+                    whichColor=0;
+                };
+                
+                dytext.colorBg = colors[ks[whichColor]];
+                
+                updatePreview();
+
+                isBgImg=false;
+            };
+        };
 
 
 
@@ -138,6 +171,18 @@
             updatePreview();
         };
 
+        function changeColors(){
+            colors=dytext.randomColors();
+           dytext.colorLeft = colors.colorLeft;
+           dytext.colorRight = colors.colorRight;
+           dytext.color = colors.color;
+           dytext.colorBg = colors.colorBg;
+
+
+
+            updatePreview();
+        }
+
 
         
 
@@ -150,25 +195,6 @@
             var _i = ~~(Math.random() * _ws.length);
             wordElement.value = _ws[_i];
 
-
-            var _cs = [{
-                color: 'white',
-                colorBg: '#180D3F',
-                colorLeft: '#FFEB1C',
-                colorRight: '#4EC1FF',
-            }, {
-                color: 'white',
-                colorBg: '#0D2C3F',
-                colorLeft: '#1CFFFC',
-                colorRight: '#FA4747',
-            }, {
-                color: 'white',
-                colorBg: '#0D2C3F',
-                colorLeft: '#FFEB1C',
-                colorRight: '#FA4747',
-            }];
-            var _j = ~~(Math.random() * _cs.length);
-
             var _w = wordElement.value,
                 _fs = fontSizeElement.value,
                 _s = seedElement.value * 0.03,
@@ -177,16 +203,20 @@
 
             dytext = new DYText({
                 word: _w,
-                color: _cs[_j].color,
-                colorBg: _cs[_j].colorBg,
-                colorLeft: _cs[_j].colorLeft,
-                colorRight: _cs[_j].colorRight,
                 dev: _dev,
                 seed: _s,
                 fontSize: _fs,
                 divideNum: 24,
                 bgImg: _bgImg
             });
+
+           colors=dytext.randomColors();
+           dytext.colorLeft = colors.colorLeft;
+           dytext.colorRight = colors.colorRight;
+           dytext.color = colors.color;
+           dytext.colorBg = colors.colorBg;
+
+
 
             updatePreview();
         };
