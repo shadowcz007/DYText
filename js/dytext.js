@@ -70,7 +70,7 @@ DYText.prototype.random = function (min, max) {
 };
 
 DYText.prototype.sin = function (len) {
-    console.log(len);
+   // console.log(len);
     var res = [];
     for (var i = 0; i < len; i++) {
         var num = parseFloat(Math.abs(Math.sin(this.random(0, 6))).toString().slice(0, 4)) * 100;
@@ -134,6 +134,8 @@ DYText.prototype.generate = function () {
                 get: get,
                 put: put
             };
+
+        seed+=0.0005;
 
         res.push(obj);
 
