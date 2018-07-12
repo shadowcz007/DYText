@@ -4,7 +4,7 @@ font-family: zcool-gdh;
 src: url('./zcool-gdh.ttf'); 
 } 
  */
-
+/*
  @font-face {
     font-family: 'zcool-gdh';
     src: url('//at.alicdn.com/t/webfont_vycr3e6aggc.eot');
@@ -15,15 +15,12 @@ src: url('./zcool-gdh.ttf');
     url('//at.alicdn.com/t/webfont_vycr3e6aggc.svg#思源黑体-极细') format('svg');
     /* iOS 4.1- */
 }
+*/
 
 html, body {
     padding: 0;
     margin: 0;
-    width:100%;
- 
-    
-     
-    
+    width:100%;    
 }
 
 p{
@@ -36,6 +33,28 @@ p{
 }
 details summary::-webkit-details-marker {
     display: none;
+  }
+
+  @media screen and (min-width: 560px) {
+    #main{
+        width: 50% !important;
+    }
+    footer{
+        width: 50% !important;
+    }
+    #other{
+        display: block  !important;
+    }
+  }
+
+  #other{
+      display: none;
+  }
+
+  .container{
+      display: flex;
+      flex-direction: row;
+      background-color: #eee
   }
 header{
     padding: 0;
@@ -54,7 +73,6 @@ header h2{
     margin:1em;
     padding: 0;
     text-align: center;
-    font-family: 'zcool-gdh';
 }
 header p{
     font-size: 12px;
@@ -92,8 +110,6 @@ footer p{
     width: 100%;
     display: flex;
     flex-direction: column;
-    
-
 }
 #preview{
    /* outline: 1px solid  rgb(112, 35, 255);*/
@@ -120,7 +136,7 @@ footer p{
 #edit label{
    
     font-size: 12px;
-    font-family: "zcool-gdh";
+    
     display: block;
 }
 
@@ -136,7 +152,7 @@ footer p{
     margin-left: 5%;
     border-radius: 4px;
     font-size: 18px;
-    font-family: "zcool-gdh";
+    
     /* padding: 8px; */
     border: none;
 }
@@ -147,7 +163,7 @@ input[type="text"]{
     width: 198px;
     border-radius: 4px;
     font-size: 18px;
-    font-family: "zcool-gdh";
+     
     padding: 8px;
     border: none;
 }
@@ -157,7 +173,7 @@ input[type="range"]{
     width: 198px;
     border-radius: 4px;
     font-size: 18px;
-    font-family: "zcool-gdh";
+    
     padding: 8px;
     border: none;
 }

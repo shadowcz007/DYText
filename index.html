@@ -23,68 +23,77 @@
         </details>
 
     </header>
-    <div id="main">
-        <div id="preview"></div>
-        <div id="edit">
 
-            <div class="option" style="width:100%;">
-                <div class="title">更改内容</div>
-                <input type="text" maxlength="24" class="shadow" value="HELLO WORLD" id="word">
-            </div>
-
-
-
-            <div class="option" style="display: none">
-                <div class="title">字体大小</div>
-                <input type="range" step="1" min="10" onchange="changeFontSize()" id="fontSize" value="44">
-            </div>
-
-            <div class="option" style="display: none">
-                <div class="title">抖动幅度</div>
-                <input type="range" step="2" min="1" onchange="changeSeed()" id="seed" value="1.8">
-            </div>
-
-            <div class="option" style="display: none">
-                <div class="title">切割线</div>
-
-                <div class="rowDisplay">
-
-                    <input id="isdev" type="checkbox" onchange="changeDev()">
-                    <label for="isdev" id="isdev_label">显示</lable>
-
+    <div class="container">
+            <div id="main">
+                    <div id="preview"></div>
+                    <div id="edit">
+            
+                        <div class="option" style="width:100%;">
+                            <div class="title">更改内容</div>
+                            <input type="text" maxlength="24" class="shadow" value="HELLO WORLD" id="word">
+                        </div>
+            
+            
+            
+                  
+            
+            
+                    </div>
+                </div>
+            
+                <div id="other">
+                        <div class="option" >
+                                <div class="title">字体大小</div>
+                                <input type="range" step="1" min="120" onchange="changeFontSize()" id="fontSize" value="72">
+                            </div>
+                
+                            <div class="option"  >
+                                <div class="title">抖动幅度</div>
+                                <input type="range" step="2" min="1" onchange="changeSeed()" id="seed" value="1.8">
+                            </div>
+                
+                            <div class="option" >
+                                <div class="title">切割线</div>
+                
+                                <div class="rowDisplay">
+                
+                                    <input id="isdev" type="checkbox" onchange="changeDev()">
+                                    <label for="isdev" id="isdev_label">显示</lable>
+                
+                                </div>
+                
+                
+                
+                
+                
+                            </div>
+                
+                
+                            <div class="option"  >
+                                <div class="title">图片格式</div>
+                
+                                <div class="radioGroup">
+                                    <div class="rowDisplay">
+                                        <input id="type_png" type="radio" name="type" onchange="changeType()" >
+                                        <label for="type_png">PNG</lable>
+                                    </div>
+                
+                                    <div class="rowDisplay">
+                                        <input id="type_gif" type="radio" name="type" onchange="changeType()" checked>
+                                        <label for="type_gif">GIF</lable>
+                
+                                    </div>
+                
+                                </div>
+                
+                
+                
+                            </div>
                 </div>
 
-
-
-
-
-            </div>
-
-
-            <div class="option" style="display: none">
-                <div class="title">图片格式</div>
-
-                <div class="radioGroup">
-                    <div class="rowDisplay">
-                        <input id="type_png" type="radio" name="type" onchange="changeType()" checked>
-                        <label for="type_png">PNG</lable>
-                    </div>
-
-                    <div class="rowDisplay">
-                        <input id="type_gif" type="radio" name="type" onchange="changeType()">
-                        <label for="type_gif">GIF</lable>
-
-                    </div>
-
-                </div>
-
-
-
-            </div>
-
-
-        </div>
     </div>
+    
     <footer>
         <img src="./img/logo_text_long.png" class="logo">
         <p>MIT License by shadow</p>
@@ -140,19 +149,19 @@
 
 
             var _cs = [{
-                color: '#FFEB1C',
+                color: 'white',
                 colorBg: '#180D3F',
                 colorLeft: '#FFEB1C',
                 colorRight: '#4EC1FF',
             }, {
-                color: '#1CFFFC',
+                color: 'white',
                 colorBg: '#0D2C3F',
                 colorLeft: '#1CFFFC',
                 colorRight: '#FA4747',
             }, {
                 color: 'white',
                 colorBg: '#0D2C3F',
-                colorLeft: 'white',
+                colorLeft: '#FFEB1C',
                 colorRight: '#FA4747',
             }];
             var _j = ~~(Math.random() * _cs.length);
@@ -172,9 +181,9 @@
                 dev: _dev,
                 seed: _s,
                 fontSize: _fs,
-                divideNum: 14,
-                offset: 0.01,
-                bgImg: _bgImg
+                divideNum: 24,
+                bgImg: _bgImg,
+                fontFamily:'-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif'
             });
 
             updatePreview();

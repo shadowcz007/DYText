@@ -23,7 +23,7 @@ function DYText(opts) {
     this.height = (_opts.fontSize || 120) * 1.5;
     this.fontFamily = _opts.fontFamily || 'zcool-gdh';
     this.font = "italic small-caps 900 " + this.fontSize + " " + this.fontFamily;
-    this.offset = (this.height * _opts.offset) || this.height * 0.015;
+    this.offset = (this.height * _opts.offset) || this.height * 0.06;
 
     this.x = _opts.x || 0;
     this.y = _opts.y || 0;
@@ -57,7 +57,7 @@ function DYText(opts) {
 DYText.prototype.setFontSize = function (_num) {
     this.fontSize = _num + 'px' || '120px';
     this.height = (_num || 120) * 1.5;
-    this.font = "italic small-caps 900 " + this.fontSize + " " + this.fontFamily;
+    this.font = "italic small-caps 1000 " + this.fontSize + " " + this.fontFamily;
     this.offset = this.height * 0.015;
 };
 
@@ -243,13 +243,14 @@ DYText.prototype.draw = function () {
 
     ctx.fillStyle = this.colorLeft;
     ctx.fillText(word, x - offset, y - offset);
-
-    // ctx.fillStyle=this.color;
-    //ctx.fillText(word,x,y);
+    
+     ctx.fillStyle=this.color;
+     ctx.fillText(word,x,y);
 
     ctx.globalCompositeOperation = "xor";
     ctx.fillStyle = this.colorRight;
     ctx.fillText(word, x + offset, y + offset);
+   
 
     /* ctx.globalCompositeOperation="xor";
      ctx.fillStyle=this.color;
@@ -300,7 +301,7 @@ DYText.prototype.toCanvas = function (targetCtx) {
     targetCtx.fillStyle ='rgba(0,0,0,0.5)';
     this.bgImg ? targetCtx.drawImage(this.bgImg, 0, 0) : targetCtx.fillStyle =this.colorBg;
     targetCtx.fillRect(0, 0, 480, 280);
-    targetCtx.fillStyle = 'rgba(255,255,255,.1)';
+    targetCtx.fillStyle = 'rgba(255,255,255,.05)';
 
     var _i = Math.random() > 0.5 ? -1 : 1;
     var circle = {
