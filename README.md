@@ -9,4 +9,4 @@ glitch art font generator
 2018/07/11 适配移动端
 
 
-微信公众号 Design-AI-Lab
+微信公众号 mix-lab 无界社区
